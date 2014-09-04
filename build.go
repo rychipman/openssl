@@ -16,6 +16,6 @@
 
 package openssl
 
-// #cgo pkg-config: libssl
+// #cgo linux pkg-config: openssl
 // #cgo windows CFLAGS: -DWIN32_LEAN_AND_MEAN
 import "C"
