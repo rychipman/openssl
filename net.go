@@ -98,13 +98,7 @@ func Dial(network, addr string, ctx *Ctx, flags DialFlags) (*Conn, error) {
 		c.Close()
 		return nil, err
 	}
-	if flags&DisableSNI == 0 {
-		err = conn.SetTlsExtHostName(host)
-		if err != nil {
-			conn.Close()
-			return nil, err
-		}
-	}
+	// XXX removed SNI
 	err = conn.Handshake()
 	if err != nil {
 		conn.Close()
