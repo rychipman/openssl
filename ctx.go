@@ -472,23 +472,23 @@ func (s *CertificateStore) SetFlags(flags X509VerificationFlag) error {
 
 // See https://www.openssl.org/docs/crypto/X509_VERIFY_PARAM_set_flags.html
 const (
-	CBIssuerCheck      X509VerificationFlag = C.X509_V_FLAG_CB_ISSUER_CHECK
-	UseCheckTime       X509VerificationFlag = C.X509_V_FLAG_USE_CHECK_TIME
-	CRLCheck           X509VerificationFlag = C.X509_V_FLAG_CRL_CHECK
-	CRLCheckAll        X509VerificationFlag = C.X509_V_FLAG_CRL_CHECK_ALL
-	IgnoreCritical     X509VerificationFlag = C.X509_V_FLAG_IGNORE_CRITICAL
-	X509Strict         X509VerificationFlag = C.X509_V_FLAG_X509_STRICT
-	AllowProxyCerts    X509VerificationFlag = C.X509_V_FLAG_ALLOW_PROXY_CERTS
-	PolicyCheck        X509VerificationFlag = C.X509_V_FLAG_POLICY_CHECK
-	ExplicitPolicy     X509VerificationFlag = C.X509_V_FLAG_EXPLICIT_POLICY
-	InhibitAny         X509VerificationFlag = C.X509_V_FLAG_INHIBIT_ANY
-	InhibitMap         X509VerificationFlag = C.X509_V_FLAG_INHIBIT_MAP
-	NotifyPolicy       X509VerificationFlag = C.X509_V_FLAG_NOTIFY_POLICY
-	ExtendedCRLSupport X509VerificationFlag = C.X509_V_FLAG_EXTENDED_CRL_SUPPORT
-	UseDeltas          X509VerificationFlag = C.X509_V_FLAG_USE_DELTAS
-	CheckSsSignature   X509VerificationFlag = C.X509_V_FLAG_CHECK_SS_SIGNATURE
-//	TrustedFirst       X509VerificationFlag = C.X509_V_FLAG_TRUSTED_FIRST
-	PolicyMask         X509VerificationFlag = C.X509_V_FLAG_POLICY_MASK
+	CBIssuerCheck   X509VerificationFlag = C.X509_V_FLAG_CB_ISSUER_CHECK
+	UseCheckTime    X509VerificationFlag = C.X509_V_FLAG_USE_CHECK_TIME
+	CRLCheck        X509VerificationFlag = C.X509_V_FLAG_CRL_CHECK
+	CRLCheckAll     X509VerificationFlag = C.X509_V_FLAG_CRL_CHECK_ALL
+	IgnoreCritical  X509VerificationFlag = C.X509_V_FLAG_IGNORE_CRITICAL
+	X509Strict      X509VerificationFlag = C.X509_V_FLAG_X509_STRICT
+	AllowProxyCerts X509VerificationFlag = C.X509_V_FLAG_ALLOW_PROXY_CERTS
+	PolicyCheck     X509VerificationFlag = C.X509_V_FLAG_POLICY_CHECK
+	ExplicitPolicy  X509VerificationFlag = C.X509_V_FLAG_EXPLICIT_POLICY
+	InhibitAny      X509VerificationFlag = C.X509_V_FLAG_INHIBIT_ANY
+	InhibitMap      X509VerificationFlag = C.X509_V_FLAG_INHIBIT_MAP
+	NotifyPolicy    X509VerificationFlag = C.X509_V_FLAG_NOTIFY_POLICY
+	//	ExtendedCRLSupport X509VerificationFlag = C.X509_V_FLAG_EXTENDED_CRL_SUPPORT
+	//	UseDeltas          X509VerificationFlag = C.X509_V_FLAG_USE_DELTAS
+	//	CheckSsSignature   X509VerificationFlag = C.X509_V_FLAG_CHECK_SS_SIGNATURE
+	//	TrustedFirst       X509VerificationFlag = C.X509_V_FLAG_TRUSTED_FIRST
+	PolicyMask X509VerificationFlag = C.X509_V_FLAG_POLICY_MASK
 )
 
 type CertificateStoreLookup struct {
