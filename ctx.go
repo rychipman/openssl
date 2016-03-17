@@ -80,7 +80,7 @@ static long SSL_CTX_add_extra_chain_cert_not_a_macro(SSL_CTX* ctx, X509 *cert) {
 #endif
 
 static const SSL_METHOD *OUR_TLSv1_1_method() {
-#if defined(TLS1_1_VERSION) && !defined(OPENSSL_SYSNAME_MACOSX)
+#if OPENSSL_VERSION_NUMBER > 0x1000100fL && defined(TLS1_1_VERSION) && !defined(OPENSSL_SYSNAME_MACOSX)
     return TLSv1_1_method();
 #else
     return NULL;
@@ -88,7 +88,7 @@ static const SSL_METHOD *OUR_TLSv1_1_method() {
 }
 
 static const SSL_METHOD *OUR_TLSv1_2_method() {
-#if defined(TLS1_2_VERSION) && !defined(OPENSSL_SYSNAME_MACOSX)
+#if OPENSSL_VERSION_NUMBER > 0x1000100fL && defined(TLS1_2_VERSION) && !defined(OPENSSL_SYSNAME_MACOSX)
     return TLSv1_2_method();
 #else
     return NULL;
@@ -117,7 +117,6 @@ import (
 	"io/ioutil"
 	"os"
 	"runtime"
-	"sync"
 	"time"
 	"unsafe"
 
@@ -137,9 +136,6 @@ type Ctx struct {
 	key       PrivateKey
 	verify_cb VerifyCallback
 	sni_cb    TLSExtServernameCallback
-
-	ticket_store_mu sync.Mutex
-	ticket_store    *TicketStore
 }
 
 //export get_ssl_ctx_idx
@@ -762,14 +758,6 @@ func (c *Ctx) GetVerifyDepth() int {
 }
 
 type TLSExtServernameCallback func(ssl *SSL) SSLTLSExtErr
-
-// SetTLSExtServernameCallback sets callback function for Server Name Indication
-// (SNI) rfc6066 (http://tools.ietf.org/html/rfc6066). See
-// http://stackoverflow.com/questions/22373332/serving-multiple-domains-in-one-box-with-sni
-func (c *Ctx) SetTLSExtServernameCallback(sni_cb TLSExtServernameCallback) {
-	c.sni_cb = sni_cb
-	C.SSL_CTX_set_tlsext_servername_callback_not_a_macro(c.ctx, (*[0]byte)(C.sni_cb))
-}
 
 func (c *Ctx) SetSessionId(session_id []byte) error {
 	runtime.LockOSThread()
