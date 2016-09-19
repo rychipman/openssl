@@ -121,6 +121,7 @@ import (
 )
 
 func init() {
+	C.ERR_load_crypto_strings()
 	C.OPENSSL_config(nil)
 	C.ENGINE_load_builtin_engines()
 	C.SSL_load_error_strings()
